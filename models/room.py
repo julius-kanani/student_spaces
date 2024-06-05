@@ -9,7 +9,7 @@ class Room(BaseModel, Base):
     """Representation of a Room."""
     __tablename__ = 'rooms'
 
-    property_id = Column(Integer, ForeignKey('properties.id'), nullable=False)
+    property_id = Column(String(60), ForeignKey('properties.id'), nullable=False)
     room_type = Column(String(128), nullable=False)
     bed_count = Column(Integer, nullable=False)
     monthly_rent = Column(DECIMAL, nullable=False)

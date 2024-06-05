@@ -1,4 +1,5 @@
 export SS_TYPE_STORAGE="db"
 export SS_MYSQL_USER="SS_DEV"
-export SS_MYSQL_PWD="SS_dev_password"
-export SS_MYSQL_DB="SS-db"
+export SS_MYSQL_PWD="SS_4232o5\$MM."
+export SS_MYSQL_DB="SS_db"
+export SS_MYSQL_HOST="localhost"

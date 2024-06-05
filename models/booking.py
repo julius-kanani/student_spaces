@@ -8,8 +8,8 @@ class Booking(BaseModel, Base):
     """Representation of a Booking."""
     __tablename__ = 'bookings'
 
-    room_id = Column(Integer, ForeignKey('rooms.id'), nullable=False)
-    student_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    room_id = Column(String(60), ForeignKey('rooms.id'), nullable=False)
+    student_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     start_date = Column(Date, nullable=False)
     end_date = Column(Date, nullable=False)
     status = Column(Enum('pending', 'confirmed', 'canceled', name='booking_statuses'), nullable=False)

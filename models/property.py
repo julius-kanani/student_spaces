@@ -9,7 +9,7 @@ class Property(BaseModel, Base):
     """Representation of a Property."""
     __tablename__ = 'properties'
 
-    landlord_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    landlord_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     title = Column(String(128), nullable=False)
     description = Column(Text, nullable=True)
     address = Column(String(256), nullable=False)

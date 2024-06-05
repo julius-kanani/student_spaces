@@ -15,7 +15,7 @@ class User(BaseModel, Base):
     full_name = Column(String(128), nullable=True)
     phone_number = Column(String(20), nullable=True, unique=True)
     user_type = Column(Enum('student', 'landlord', name='user_types'), nullable=False)
-    university_id = Column(Integer, ForeignKey('universities.id'), nullable=False)
+    university_id = Column(String(60), ForeignKey('universities.id'), nullable=False)
 
     properties = relationship("Property", backref="landlord", cascade="all, delete-orphan")
     bookings = relationship("Booking", backref="student", cascade="all, delete-orphan")
