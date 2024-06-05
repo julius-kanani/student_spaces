@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-""" The base_model module that contains the BaseModel class. """
-
+"""The base_model module that contains the BaseModel class."""
 
 from datetime import datetime
 import models
@@ -15,7 +14,6 @@ if getenv("HBNB_TYPE_STORAGE") == 'db':
     Base = declarative_base()
 else:
     Base = object
-
 
 class BaseModel:
     """The BaseModel class from which future classes will be derived"""
@@ -42,19 +40,17 @@ class BaseModel:
 
     def __str__(self):
         """String representation of the BaseModel class"""
-
         return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
                                          self.__dict__)
 
     def save(self):
-        """updates the attribute 'updated_at' with the current datetime"""
-
+        """Updates the attribute 'updated_at' with the current datetime"""
         self.updated_at = datetime.now()
         models.storage.new(self)
         models.storage.save()
 
     def to_dict(self, save_to_disk=False):
-        """returns a dictionary containing all keys/values of the instance"""
+        """Returns a dictionary containing all keys/values of the instance"""
         new_dict = self.__dict__.copy()
         if "created_at" in new_dict:
             new_dict["created_at"] = new_dict["created_at"].isoformat()
@@ -67,5 +63,4 @@ class BaseModel:
 
     def delete(self):
         """Delete current instance from storage by calling its delete method"""
-
         models.storage.delete(self)
