@@ -6,7 +6,7 @@ from models.booking import Booking
 from models.review import Review
 from models.university import University
 
-classes = {
+model_classes = {
     "User": User,
     "Property": Property,
     "Room": Room,

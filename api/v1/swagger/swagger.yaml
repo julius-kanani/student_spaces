@@ -1,0 +1,681 @@
+swagger: "2.0"
+info:
+  description: "This is the API documentation for the Student Spaces project."
+  version: "1.0.0"
+  title: "Student Spaces API"
+host: "localhost:5000"
+basePath: "/api/v1"
+schemes:
+- "http"
+paths:
+  /status:
+    get:
+      tags:
+      - "Status"
+      summary: "Check API status"
+      description: "Returns the status of the API."
+      responses:
+        200:
+          description: "API is running"
+          schema:
+            type: "object"
+            properties:
+              status:
+                type: "string"
+                example: "OK"
+  /users:
+    get:
+      tags:
+      - "Users"
+      summary: "Get all users"
+      description: "Returns a list of all users."
+      responses:
+        200:
+          description: "A list of users"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+    post:
+      tags:
+      - "Users"
+      summary: "Create a new user"
+      description: "Creates a new user."
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        201:
+          description: "User created"
+          schema:
+            $ref: "#/definitions/User"
+  /users/{user_id}:
+    get:
+      tags:
+      - "Users"
+      summary: "Get a specific user"
+      description: "Returns a specific user by ID."
+      parameters:
+      - name: "user_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "A user"
+          schema:
+            $ref: "#/definitions/User"
+    put:
+      tags:
+      - "Users"
+      summary: "Update a user"
+      description: "Updates a user."
+      parameters:
+      - name: "user_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "User object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "User updated"
+          schema:
+            $ref: "#/definitions/User"
+    delete:
+      tags:
+      - "Users"
+      summary: "Delete a user"
+      description: "Deletes a user."
+      parameters:
+      - name: "user_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "User deleted"
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+      username:
+        type: "string"
+        example: "johndoe"
+      password:
+        type: "string"
+        example: "hashed_password"
+      email:
+        type: "string"
+        example: "johndoe@example.com"
+      full_name:
+        type: "string"
+        example: "John Doe"
+      phone_number:
+        type: "string"
+        example: "123-456-7890"
+      user_type:
+        type: "string"
+        example: "student"
+      university_id:
+        type: "integer"
+        example: 1
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+paths:
+  /properties:
+    get:
+      tags:
+      - "Properties"
+      summary: "Get all properties"
+      description: "Returns a list of all properties."
+      responses:
+        200:
+          description: "A list of properties"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Property"
+    post:
+      tags:
+      - "Properties"
+      summary: "Create a new property"
+      description: "Creates a new property."
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Property object"
+        required: true
+        schema:
+          $ref: "#/definitions/Property"
+      responses:
+        201:
+          description: "Property created"
+          schema:
+            $ref: "#/definitions/Property"
+  /properties/{property_id}:
+    get:
+      tags:
+      - "Properties"
+      summary: "Get a specific property"
+      description: "Returns a specific property by ID."
+      parameters:
+      - name: "property_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "A property"
+          schema:
+            $ref: "#/definitions/Property"
+    put:
+      tags:
+      - "Properties"
+      summary: "Update a property"
+      description: "Updates a property."
+      parameters:
+      - name: "property_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Property object"
+        required: true
+        schema:
+          $ref: "#/definitions/Property"
+      responses:
+        200:
+          description: "Property updated"
+          schema:
+            $ref: "#/definitions/Property"
+    delete:
+      tags:
+      - "Properties"
+      summary: "Delete a property"
+      description: "Deletes a property."
+      parameters:
+      - name: "property_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Property deleted"
+  /rooms:
+    get:
+      tags:
+      - "Rooms"
+      summary: "Get all rooms"
+      description: "Returns a list of all rooms."
+      responses:
+        200:
+          description: "A list of rooms"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Room"
+    post:
+      tags:
+      - "Rooms"
+      summary: "Create a new room"
+      description: "Creates a new room."
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Room object"
+        required: true
+        schema:
+          $ref: "#/definitions/Room"
+      responses:
+        201:
+          description: "Room created"
+          schema:
+            $ref: "#/definitions/Room"
+  /rooms/{room_id}:
+    get:
+      tags:
+      - "Rooms"
+      summary: "Get a specific room"
+      description: "Returns a specific room by ID."
+      parameters:
+      - name: "room_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "A room"
+          schema:
+            $ref: "#/definitions/Room"
+    put:
+      tags:
+      - "Rooms"
+      summary: "Update a room"
+      description: "Updates a room."
+      parameters:
+      - name: "room_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Room object"
+        required: true
+        schema:
+          $ref: "#/definitions/Room"
+      responses:
+        200:
+          description: "Room updated"
+          schema:
+            $ref: "#/definitions/Room"
+    delete:
+      tags:
+      - "Rooms"
+      summary: "Delete a room"
+      description: "Deletes a room."
+      parameters:
+      - name: "room_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Room deleted"
+  /bookings:
+    get:
+      tags:
+      - "Bookings"
+      summary: "Get all bookings"
+      description: "Returns a list of all bookings."
+      responses:
+        200:
+          description: "A list of bookings"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Booking"
+    post:
+      tags:
+      - "Bookings"
+      summary: "Create a new booking"
+      description: "Creates a new booking."
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Booking object"
+        required: true
+        schema:
+          $ref: "#/definitions/Booking"
+      responses:
+        201:
+          description: "Booking created"
+          schema:
+            $ref: "#/definitions/Booking"
+  /bookings/{booking_id}:
+    get:
+      tags:
+      - "Bookings"
+      summary: "Get a specific booking"
+      description: "Returns a specific booking by ID."
+      parameters:
+      - name: "booking_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "A booking"
+          schema:
+            $ref: "#/definitions/Booking"
+    put:
+      tags:
+      - "Bookings"
+      summary: "Update a booking"
+      description: "Updates a booking."
+      parameters:
+      - name: "booking_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Booking object"
+        required: true
+        schema:
+          $ref: "#/definitions/Booking"
+      responses:
+        200:
+          description: "Booking updated"
+          schema:
+            $ref: "#/definitions/Booking"
+    delete:
+      tags:
+      - "Bookings"
+      summary: "Delete a booking"
+      description: "Deletes a booking."
+      parameters:
+      - name: "booking_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Booking deleted"
+  /reviews:
+    get:
+      tags:
+      - "Reviews"
+      summary: "Get all reviews"
+      description: "Returns a list of all reviews."
+      responses:
+        200:
+          description: "A list of reviews"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Review"
+    post:
+      tags:
+      - "Reviews"
+      summary: "Create a new review"
+      description: "Creates a new review."
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Review object"
+        required: true
+        schema:
+          $ref: "#/definitions/Review"
+      responses:
+        201:
+          description: "Review created"
+          schema:
+            $ref: "#/definitions/Review"
+  /reviews/{review_id}:
+    get:
+      tags:
+      - "Reviews"
+      summary: "Get a specific review"
+      description: "Returns a specific review by ID."
+      parameters:
+      - name: "review_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "A review"
+          schema:
+            $ref: "#/definitions/Review"
+    put:
+      tags:
+      - "Reviews"
+      summary: "Update a review"
+      description: "Updates a review."
+      parameters:
+      - name: "review_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Review object"
+        required: true
+        schema:
+          $ref: "#/definitions/Review"
+      responses:
+        200:
+          description: "Review updated"
+          schema:
+            $ref: "#/definitions/Review"
+    delete:
+      tags:
+      - "Reviews"
+      summary: "Delete a review"
+      description: "Deletes a review."
+      parameters:
+      - name: "review_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Review deleted"
+  /universities:
+    get:
+      tags:
+      - "Universities"
+      summary: "Get all universities"
+      description: "Returns a list of all universities."
+      responses:
+        200:
+          description: "A list of universities"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/University"
+    post:
+      tags:
+      - "Universities"
+      summary: "Create a new university"
+      description: "Creates a new university."
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "University object"
+        required: true
+        schema:
+          $ref: "#/definitions/University"
+      responses:
+        201:
+          description: "University created"
+          schema:
+            $ref: "#/definitions/University"
+  /universities/{university_id}:
+    get:
+      tags:
+      - "Universities"
+      summary: "Get a specific university"
+      description: "Returns a specific university by ID."
+      parameters:
+      - name: "university_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "A university"
+          schema:
+            $ref: "#/definitions/University"
+    put:
+      tags:
+      - "Universities"
+      summary: "Update a university"
+      description: "Updates a university."
+      parameters:
+      - name: "university_id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "University object"
+        required: true
+        schema:
+          $ref: "#/definitions/University"
+      responses:
+        200:
+          description: "University updated"
+          schema:
+            $ref: "#/definitions/University"
+    delete:
+      tags:
+      - "Universities"
+      summary: "Delete a university"
+      description: "Deletes a university."
+      parameters:
+      - name: "university_id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "University deleted"
+definitions:
+  Property:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+      landlord_id:
+        type: "string"
+        example: "1"
+      title:
+        type: "string"
+        example: "Beautiful Apartment"
+      description:
+        type: "string"
+        example: "A nice place to stay."
+      address:
+        type: "string"
+        example: "123 Main St"
+      city:
+        type: "string"
+        example: "Anytown"
+      rent_price:
+        type: "number"
+        format: "float"
+        example: 1000.00
+      is_available:
+        type: "boolean"
+        example: true
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+  Room:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+      property_id:
+        type: "string"
+        example: "1"
+      room_type:
+        type: "string"
+        example: "single"
+      bed_count:
+        type: "integer"
+        example: 2
+      monthly_rent:
+        type: "number"
+        format: "float"
+        example: 500.00
+      is_available:
+        type: "boolean"
+        example: true
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+  Booking:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+      room_id:
+        type: "string"
+        example: "1"
+      student_id:
+        type: "string"
+        example: "1"
+      start_date:
+        type: "string"
+        format: "date"
+        example: "2023-06-01"
+      end_date:
+        type: "string"
+        format: "date"
+        example: "2023-12-31"
+      status:
+        type: "string"
+        example: "confirmed"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+  Review:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+      property_id:
+        type: "string"
+        example: "1"
+      user_id:
+        type: "string"
+        example: "1"
+      rating:
+        type: "integer"
+        example: 5
+      comment:
+        type: "string"
+        example: "Great place!"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"
+  University:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1"
+      name:
+        type: "string"
+        example: "Example University"
+      location:
+        type: "string"
+        example: "Example City"
+      abbreviation:
+        type: "string"
+        example: "EU"
+      established_date:
+        type: "string"
+        format: "date"
+        example: "1900-01-01"
+      created_at:
+        type: "string"
+        format: "date-time"
+      updated_at:
+        type: "string"
+        format: "date-time"

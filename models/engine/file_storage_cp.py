@@ -3,7 +3,8 @@
 
 import json
 from models.base_model import BaseModel
-import models
+from models.classes import classes
+
 
 class FileStorage:
     """Serializes instances to a JSON file and deserializes JSON file to instances"""
@@ -35,7 +36,7 @@ class FileStorage:
                 json_obj = json.load(f)
             for key, value in json_obj.items():
                 class_name = key.split('.')[0]
-                self.__objects[key] = models.classes[class_name](**value)
+                self.__objects[key] = classes[class_name](**value)
         except FileNotFoundError:
             pass
 

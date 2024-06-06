@@ -22,14 +22,15 @@ class DBStorage:
 
     def all(self, cls=None):
         """Query on the current database session"""
+        from models.classes import model_classes
         objects = {}
         if cls:
-            objs = self.__session.query(models.classes[cls]).all()
+            objs = self.__session.query(model_classes[cls]).all()
             for obj in objs:
                 key = obj.__class__.__name__ + '.' + obj.id
                 objects[key] = obj
         else:
-            for clss in models.classes.values():
+            for clss in model_classes.values():
                 objs = self.__session.query(clss).all()
                 for obj in objs:
                     key = obj.__class__.__name__ + '.' + obj.id
@@ -61,8 +62,7 @@ class DBStorage:
 
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(session_factory)
-        self.__session = Session()
+        self.__session = scoped_session(session_factory)
 
     def close(self):
         """Close the session"""
